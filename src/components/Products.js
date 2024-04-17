@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import Pagination from "./Pagination";
 import useDataFetcher from "./useDataFetcher";
-import Carrito from "./Carrito";
-//import UserProfile from "./UserProfile";
 
 export default function Products() {
     const {
@@ -15,7 +13,6 @@ export default function Products() {
         setCurrentPage,
       } = useDataFetcher();
 
-      const numeroPrueba = 12;
       const [allProducts, setAllProducts] = useState([]);
       const [total, setTotal] = useState(0);
       const [countProducts, setCountProducts] = useState(0);
