@@ -1,0 +1,26 @@
+{
+    "user": [
+      {
+        "id": "adminuser",
+        "name": "Nihira",
+        "password": "admin",
+        "email": "nihiratechiees@gmail.com",
+        "phone": "8989898989",
+        "country": "usa",
+        "address": "",
+        "role":"admin",
+        "gender": "female"
+      },
+      {
+        "id": "ntuser",
+        "name": "Chonita",
+        "password": "ntuser",
+        "email": "Chonita@email.com",
+        "phone": "56778889989",
+        "country": "singapore",
+        "role":"user",
+        "gender": "male"
+      }
+    ]
+
+  }

@@ -1,8 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import Pagination from "./Pagination";
-import useDataFetcher from "./useDataFetcher";
+import useDataFetcher from "../services/useDataFetcher";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/Shopping";
 
-export default function Products() {
+const Products = () => {
+  //const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
     const {
         loading,
         pages,
@@ -13,21 +18,21 @@ export default function Products() {
         setCurrentPage,
       } = useDataFetcher();
 
-      const [allProducts, setAllProducts] = useState([]);
-      const [total, setTotal] = useState(0);
-      const [countProducts, setCountProducts] = useState(0);
-      const [count,setCount] = useState(1);
+      // const [allProducts, setAllProducts] = useState([]);
+      // const [total, setTotal] = useState(0);
+      // const [countProducts, setCountProducts] = useState(0);
+      // const [count,setCount] = useState(1);
 
-      const onAddProduct = product => {
-        setCount(count + 1);
+      // const onAddProduct = product => {
+      //   setCount(count + 1);
     
-        setTotal(total + product.price * product.quantity);
-        setCountProducts(countProducts + product.quantity);
-        setAllProducts([...allProducts, product]);
-        console.log(count);
-        console.log(product);
-        console.log(allProducts);
-      }
+      //   setTotal(total + product.price * product.quantity);
+      //   setCountProducts(countProducts + product.quantity);
+      //   setAllProducts([...allProducts, product]);
+      //   console.log(count);
+      //   console.log(product);
+      //   console.log(allProducts);
+      // }
     return (<div className="font-Poppins section" id="products">
     {loading ? (
       <div className="text-center text-5xl">Loading...</div>
@@ -45,7 +50,7 @@ export default function Products() {
                 <div className="text-[1rem] font-bold">{product.category}</div>
                 <div className="text-[1rem] font-bold"> $ {product.price}</div>
               </div>
-              <button className=" text-sm bg-orange-400 p-2 text-white rounded-md" onClick={() => onAddProduct(product)}>
+              <button className=" text-sm bg-orange-400 p-2 text-white rounded-md" onClick={() => dispatch(addToCart(product))}>
                 Add to cart
               </button>
             </div>            
@@ -61,3 +66,5 @@ export default function Products() {
     )}
     </div>)
 }
+
+export default Products;

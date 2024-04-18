@@ -1,21 +1,29 @@
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import CartItem from "./CartItem";
+import { clearCart, delFromCart } from "../actions/Shopping";
 
-export default function Carrito() {
+const Carrito = () => {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const { cart } = state.shopping;
+
   return (
-    <div class="min-h-screen flex flex-col justify-center items-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-700 dark:text-white mb-4">
-        Site is under maintenance
-      </h1>
-      <p class="text-center text-gray-500 dark:text-gray-300 text-lg md:text-xl lg:text-2xl mb-8">
-        We're working hard to improve the user experience. Stay tuned!
-      </p>
-      <div class="flex space-x-4">
-        <Link to="/"
-          class="border-2 border-orange-400 text-black font-bold py-3 px-6 rounded dark:text-white dark:border-white"
-        >
-          Home
-        </Link>
-      </div>
+    <div>
+      <h3>Carrito</h3>
+      <article className="box">
+        {cart.map((item, index) => (
+          <CartItem
+            key={index}
+            data={item}
+            delOneFromCart={() => dispatch(delFromCart(item.id))}
+            delAllFromCart={() => dispatch(delFromCart(item.id, true))}
+          />
+        ))}
+      <button className=" text-sm bg-orange-400 p-2 mt-2 text-white rounded-md" onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
+      </article>
     </div>
   );
 }
+
+export default Carrito;

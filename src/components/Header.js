@@ -18,7 +18,7 @@ class Header extends Component {
           <nav id="menu">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/coderioecommerce/build">Home</Link>
               </li>
               <li>
                 <Link to="/Login">Sign in</Link>
