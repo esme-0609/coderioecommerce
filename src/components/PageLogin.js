@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Users from "../data/Users.json"
+import toast, {Toaster} from "react-hot-toast";
 
 export default function PageLogin() {
   const [values, setValues] = useState({
@@ -20,9 +21,9 @@ export default function PageLogin() {
     }
 
     if(datfound === 1){
-      alert ("succesful !!");
+      toast.success('succesful !!');
     }else{
-      alert("Incorrect data, try again");
+      toast.error('Incorrect data, try again');
     }
 
   }
@@ -115,6 +116,7 @@ export default function PageLogin() {
           Submit
         </button>
       </form>
-    </div>
+      <Toaster />
+    </div>  
   );
 }

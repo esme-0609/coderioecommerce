@@ -3,6 +3,7 @@ import Pagination from "./Pagination";
 import useDataFetcher from "../services/useDataFetcher";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../actions/Shopping";
+import toast, {Toaster} from "react-hot-toast";
 
 const Products = () => {
   //const state = useSelector((state) => state);
@@ -33,6 +34,14 @@ const Products = () => {
       //   console.log(product);
       //   console.log(allProducts);
       // }
+      const alertAddToCar = () => {
+        toast.success('Successfully added to cart!');
+      }
+
+      const allAddToCar = (product) => {
+        dispatch(addToCart(product));
+        alertAddToCar();
+      }
     return (<div className="font-Poppins section" id="products">
     {loading ? (
       <div className="text-center text-5xl">Loading...</div>
@@ -50,13 +59,14 @@ const Products = () => {
                 <div className="text-[1rem] font-bold">{product.category}</div>
                 <div className="text-[1rem] font-bold"> $ {product.price}</div>
               </div>
-              <button className=" text-sm bg-orange-400 p-2 text-white rounded-md" onClick={() => dispatch(addToCart(product))}>
+              <button className=" text-sm bg-orange-400 p-2 text-white rounded-md" onClick={() => allAddToCar(product)}>
                 Add to cart
               </button>
             </div>            
             //return <UserProfile key={page.id} {...page} />;
           ))}
         </div>
+        <Toaster />
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}

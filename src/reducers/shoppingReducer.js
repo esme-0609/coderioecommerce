@@ -12,10 +12,6 @@ import {
   export function shoppingReducer(state = initialState, action) {
     switch (action.type) {
       case ADD_TO_CART: {
-        // let newItem = state.products.find(
-        //   (product) => product.id === action.payload
-        // );
-        console.log("arreglo :: " + action.payload.id);
   
         let itemInCart = state.cart.find((item) => item.id === action.payload.id);
   
